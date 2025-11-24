@@ -1,0 +1,45 @@
+atajos vscode
+wind + tab = ventanas de windows
+ctrl + ñ =cerrar/abrir terminal
+del *.exe  = despues de correr cada programa para eliminar archivos .exe
+dir *exe = ver archivos .exe
+ctrl + s = guardar
+ctrl + tab = moverse entre pestanas de vscode
+crtl + F4 = cierra archivo en vscode
+ctrl + w = tambien cierra archivo en vscode
+alt + F4 = cierra vscode
+ctrl + F = buscar
+ctrl + H = reemplazar
+ctrl + K +F = cerrar carpeta
+shift + alt + F = Format Document
+ctrl + A = seleccionar todo
+alt + z = rompe lineas
+ctrl + B = ocultar/mostrar EXPLORADOR vscode
+crtl + | = dividir código
+shift + alt + ABAJO = copiar línea abajo
+F3 = avanzar en BUSCAR en el codigo
+prompt $g = borra la ruta a >
+prompt $d = fecha en la línea de la terminal
+prompt $p$g = restaura la ruta de la linea de comandos
+
+copiar el codigo en la carpeta del compilador D:\gccv2\bin, 
+donde D = la memoria USB, compilar con: ($ = prompt)
+
+> gcc archivo.c -o nombreEjecutable
+> nombreEjecutable   ##para ejecutar
+
+GIT
+To remove the file from both the repository and your local filesystem: git rm <filename>
+Commit the Deletion: Commit the changes to your local repository: git commit -m "Deleted <filename>"
+Push Changes to Remote: Push the committed changes to your GitHub repository: git push origin <branch-name> (master)
+
+1. Stage Changes:
+After modifying files in your local working directory, you need to tell Git which of these changes you want to include in your next commit. This is called "staging." = git add <file_name> # To stage a specific file / git add . # To stage all changes in the current directory
+2. Commit Changes:
+Once changes are staged, you can commit them to your local Git repository. A commit is a snapshot of your project at a specific point in time. = git commit -m "Your descriptive commit message here"
+3. Push Changes to GitHub:
+After committing locally, you need to push these committed changes to your remote GitHub repository to make them available online. = git push origin <your_branch_name> (master)
+4.
+git push
+
+        
