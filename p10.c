@@ -21,8 +21,31 @@ int main()
 {
     system("chcp 65001 > nul");
     system("cls");
-    examen();
 
+    char repetir;
+
+    do
+    {
+        examen();
+
+        do
+        {
+            printf("\n¿Deseas volver a iniciar el examen? (s/n): ");
+            scanf(" %c", &repetir);
+
+            if (repetir >= 'A' && repetir <= 'Z')
+                repetir += 'a' - 'A';
+
+            if (repetir != 's' && repetir != 'n')
+                printf("!Entrada inválida!. Solo se permite 's' o 'n'.\n");
+
+        } while (repetir != 's' && repetir != 'n');
+
+        system("cls");
+
+    } while (repetir == 's');
+
+    printf("Gracias por realizar el examen. ¡Hasta luego!\n");
     return 0;
 }
 
