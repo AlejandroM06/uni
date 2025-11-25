@@ -2,21 +2,26 @@
 #include <stdlib.h>
 #include <time.h>
 #include <locale.h>
+#include <string.h>
 
 #define TOTAL_PREGUNTAS 30
 #define PREGUNTAS_MOSTRAR 10
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 struct Pregunta
 {
     const char *tex;
     const char *opciones[3];
 };
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void registro();
 void examen();
 char presentarPregunta(struct Pregunta preguntas, int numero);
 int evaluarRespuesta(char respuesta, int correcta);
 void calcularCalificacion(int aciertos, int total);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+char nombreCompleto[100];
+int aciertosPregunta = 0;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
     system("chcp 65001 > nul");
@@ -26,6 +31,7 @@ int main()
 
     do
     {
+        registro();
         examen();
 
         do
@@ -40,6 +46,11 @@ int main()
                 printf("!Entrada inválida!. Solo se permite 's' o 'n'.\n");
 
         } while (repetir != 's' && repetir != 'n');
+
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+        {
+        }
 
         system("cls");
 
@@ -100,25 +111,26 @@ void examen()
          {"Copiar todo el código dentro de donde lo queramos usar", "Escribir el nombre de la función", "Escribirla en un #define"}},
         {" ¿Por qué por lo general se recomienda que cada función tenga una tarea?",
          {"Para que el código sea más largo y se vea profesional", "Para que todas las variables sean globales", "Porque así es más fácil entender, mantener y reutilizar el código"}},
-        {"Pregunta 24",
-         {"a", "b", "c"}},
-        {"Pregunta 25",
-         {"a", "b", "c"}},
-        {"Pregunta 26",
-         {"a", "b", "c"}},
-        {"Pregunta 27",
-         {"a", "b", "c"}},
-        {"Pregunta 28",
-         {"a", "b", "c"}},
-        {"Pregunta 29",
-         {"a", "b", "c"}},
-        {"Pregunta 30",
-         {"a", "b", "c"}}};
+        {" ¿Qué forma se utiliza en un diagrama de flujo para representar una decisión o un if?",
+         {"Rombo", "Círculo", "Rectángulo"}},
+        {" ¿Cuál es la función del pseudocódigo en programación?",
+         {"Representar la idea del código mediante un algoritmo y procesos.", "Empezar a desarrollar el código.", "Escribir la función de nuestro código y su objetivo."}},
+        {" ¿Para qué sirven los lenguajes en programación?",
+         {"Para comunicarnos verbalmente con los demás.", "Para crear código mediante la programación.", "Para aprender un nuevo idioma."}},
+        {" ¿Cuál es la diferencia entre software y hardware?",
+         {"El hardware son procesos internos de una computadora y el software es la parte física que hace que todo maquine.", "El software se refiere a los procesos internos de una computadora y el hardware a la parte física que hace que todo maquine", "El hardware se refiere a la memoria de una computadora únicamente, mientras que el software es la batería."}},
+        {" ¿Hacia qué dirección va un diagrama de flujo?",
+         {"Arriba", "Los dos lados", "Hacia abajo y de izquierda a derecha"}},
+        {" ¿Cuál es el código que se maneja mediante ceros y unos?",
+         {"Lenguaje", "Pseudocódigo", "Código binario"}},
+        {" ¿Qué forma se utiliza en un diagrama de flujo para representar un proceso interno u operaciones?",
+         {"Rombo", "Cículo", "Rectángulo"}}};
 
     int aciertos = 0;
+    aciertosPregunta = 0;
     int correctas[TOTAL_PREGUNTAS] = {
-        2, 2, 1, 0, 2, 1, 2, 1, 1, 0, 1, 1, 0, 1, 1, 1, 2, 0, 1, 0, 2, 1, 2,
-        0, 0, 0, 0, 0, 0, 0};
+        1, 2, 1, 0, 2, 1, 2, 1, 1, 0, 1, 1, 0, 1, 1, 1, 2, 0, 1, 0, 2, 1, 2,
+        0, 0, 1, 1, 2, 2, 2};
 
     int indices[TOTAL_PREGUNTAS];
     for (int i = 0; i < TOTAL_PREGUNTAS; i++)
@@ -134,11 +146,13 @@ void examen()
 
     for (int i = 0; i < PREGUNTAS_MOSTRAR; i++)
     {
-        int id = indices[i];
+        int ind = indices[i];
 
-        char respuesta = presentarPregunta(preguntas[id], i + 1);
+        char respuesta = presentarPregunta(preguntas[ind], i + 1);
 
-        aciertos += evaluarRespuesta(respuesta, correctas[id]);
+        int resultado = evaluarRespuesta(respuesta, correctas[ind]);
+        aciertos += resultado;
+        aciertosPregunta += resultado;
 
         system("cls");
     }
@@ -149,8 +163,14 @@ void examen()
 char presentarPregunta(struct Pregunta preguntas, int numero)
 {
     char r;
+    int preguntasRespondidas = numero - 1;
+    float porcentaje = 0.0f;
 
-    printf("=== EXAMEN === (Pregunta %d/%d)\n\n", numero, PREGUNTAS_MOSTRAR);
+    if (preguntasRespondidas > 0)
+        porcentaje = (aciertosPregunta * 100.0f) / preguntasRespondidas;
+
+    system("cls");
+    printf("=== EXAMEN DE %s. === (Pregunta %d/%d) | %0.0f %% de aciertos actuales\n\n", nombreCompleto, numero, PREGUNTAS_MOSTRAR, porcentaje);
     printf("%s\n", preguntas.tex);
 
     printf("  a) %s\n", preguntas.opciones[0]);
@@ -167,7 +187,7 @@ char presentarPregunta(struct Pregunta preguntas, int numero)
 
         if (r != 'a' && r != 'b' && r != 'c')
         {
-            printf("⚠ Entrada inválida. Solo se permite a, b o c.\n");
+            printf("¡Entrada inválida!. Solo se permite a, b o c.\n");
         }
 
     } while (r != 'a' && r != 'b' && r != 'c');
@@ -193,9 +213,19 @@ int evaluarRespuesta(char respuesta, int correcta)
 
 void calcularCalificacion(int aciertos, int total)
 {
-    float calificacion = (aciertos * 10.0f) / total;
+    float calificacion = (aciertos * 100.0f) / total;
 
     printf("===== RESULTADO FINAL =====\n");
-    printf("Aciertos: %d de %d\n", aciertos, total);
-    printf("Calificación: %.1f\n\n", calificacion);
+    printf("Número de respuestas correctas: %d de %d\n", aciertos, total);
+    printf("Porcentaje de aciertos total: %0.0f%%\n\n", calificacion);
+}
+
+void registro()
+{
+    printf("Ingresa tu nombre y apellido: ");
+    fgets(nombreCompleto, sizeof(nombreCompleto), stdin);
+
+    size_t len = strlen(nombreCompleto);
+    if (len > 0 && nombreCompleto[len - 1] == '\n')
+        nombreCompleto[len - 1] = '\0';
 }
