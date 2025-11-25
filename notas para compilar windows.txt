@@ -41,5 +41,3 @@ Once changes are staged, you can commit them to your local Git repository. A com
 After committing locally, you need to push these committed changes to your remote GitHub repository to make them available online. = git push origin <your_branch_name> (master)
 4.
 git push
-
-        
