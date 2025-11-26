@@ -17,10 +17,13 @@ void registro();
 void examen();
 char presentarPregunta(struct Pregunta preguntas, int numero);
 int evaluarRespuesta(char respuesta, int correcta);
-void calcularCalificacion(int aciertos, int total);
+void calcularCalificacion(int aciertos, int total, struct Pregunta preguntas[]);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char nombreCompleto[100];
 int aciertosPregunta = 0;
+int preguntasSeleccionadas[PREGUNTAS_MOSTRAR];
+int respuestasCorrectas[PREGUNTAS_MOSTRAR];
+const char *mostrarRetroalimentacion[TOTAL_PREGUNTAS];
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main()
 {
@@ -126,6 +129,37 @@ void examen()
         {" ¿Qué forma se utiliza en un diagrama de flujo para representar un proceso interno u operaciones?",
          {"Rombo", "Cículo", "Rectángulo"}}};
 
+    mostrarRetroalimentacion[0] = "Respuesta correcta: Opción B. Ya que una de las funciones de stdlib.h es controlar el entorno de ejecución del programa y que el programa sea limpiado correctamente para seguir ejecutándose.";
+    mostrarRetroalimentacion[1] = "Respuesta correcta: Opción C. La biblioteca conio.h es utilizada para operaciones de entrada/salida en lenguaje C.";
+    mostrarRetroalimentacion[2] = "Respuesta correcta: Opción B. Este tipo de dato puede almacenar carácteres individualmente y se le puede asignar un tamaño determinado para arreglos.";
+    mostrarRetroalimentacion[3] = "Respuesta correcta: Opción A. Los operadores relacionales comparan dos valores y determinan si la relación es verdadera o falsa.";
+    mostrarRetroalimentacion[4] = "Respuesta correcta: Opción C. Las constantes son valores fijos declarados usualmente con #define.";
+    mostrarRetroalimentacion[5] = "Respuesta correcta: Opción B. Los comentarios permiten documentar el código y facilitar la colaboración entre desarrolladores.";
+    mostrarRetroalimentacion[6] = "Respuesta correcta: Opción C. For y while son estructuras de control utilizadas para realizar ciclos.";
+    mostrarRetroalimentacion[7] = "Respuesta correcta: Opción B. La programación orientada a objetos organiza el código en clases y objetos.";
+    mostrarRetroalimentacion[8] = "Respuesta correcta: Opción B. El paradigma imperativo describe paso a paso cómo deben ejecutarse las instrucciones.";
+    mostrarRetroalimentacion[9] = "Respuesta correcta: Opción A. Haskell es un lenguaje funcional basado en funciones matemáticas.";
+    mostrarRetroalimentacion[10] = "Respuesta correcta: Opción B. El paradigma lógico utiliza hechos y reglas, como en Prolog.";
+    mostrarRetroalimentacion[11] = "Respuesta correcta: Opción B. Un algoritmo es un conjunto ordenado de pasos para resolver un problema.";
+    mostrarRetroalimentacion[12] = "Respuesta correcta: Opción A. Las variables permiten almacenar datos y los operadores manipularlos.";
+    mostrarRetroalimentacion[13] = "Respuesta correcta: Opción B. La estructura if ejecuta código dependiendo de si se cumple una condición.";
+    mostrarRetroalimentacion[14] = "Respuesta correcta: Opción B. break finaliza un ciclo inmediatamente.";
+    mostrarRetroalimentacion[15] = "Respuesta correcta: Opción B. Un diagrama de flujo representa un algoritmo mediante símbolos estandarizados.";
+    mostrarRetroalimentacion[16] = "Respuesta correcta: Opción C. En 1945, Von Neumann definió la arquitectura moderna de computadoras.";
+    mostrarRetroalimentacion[17] = "Respuesta correcta: Opción A. Incluye memoria, CPU, dispositivos de E/S y buses.";
+    mostrarRetroalimentacion[18] = "Respuesta correcta: Opción B. La ALU ejecuta operaciones aritméticas y lógicas.";
+    mostrarRetroalimentacion[19] = "Respuesta correcta: Opción A. El CPU ejecuta instrucciones y procesa datos.";
+    mostrarRetroalimentacion[20] = "Respuesta correcta: Opción C. La programación modular divide el programa en partes pequeñas y organizadas.";
+    mostrarRetroalimentacion[21] = "Respuesta correcta: Opción B. Para llamar una función solo se escribe su nombre y paréntesis.";
+    mostrarRetroalimentacion[22] = "Respuesta correcta: Opción C. Mantener funciones pequeñas facilita mantenimiento, legibilidad y reutilización.";
+    mostrarRetroalimentacion[23] = "Respuesta correcta: Opción A. El rombo representa decisiones en diagramas de flujo.";
+    mostrarRetroalimentacion[24] = "Respuesta correcta: Opción A. El pseudocódigo representa ideas y procesos del algoritmo.";
+    mostrarRetroalimentacion[25] = "Respuesta correcta: Opción B. Los lenguajes permiten crear programas mediante código.";
+    mostrarRetroalimentacion[26] = "Respuesta correcta: Opción B. El software es lo digital; el hardware es lo físico.";
+    mostrarRetroalimentacion[27] = "Respuesta correcta: Opción C. Un diagrama de flujo avanza hacia abajo y de izquierda a derecha.";
+    mostrarRetroalimentacion[28] = "Respuesta correcta: Opción C. El código binario utiliza ceros y unos.";
+    mostrarRetroalimentacion[29] = "Respuesta correcta: Opción C. El rectángulo representa procesos u operaciones en diagramas de flujo.";
+
     int aciertos = 0;
     aciertosPregunta = 0;
     int correctas[TOTAL_PREGUNTAS] = {
@@ -133,6 +167,7 @@ void examen()
         0, 0, 1, 1, 2, 2, 2};
 
     int indices[TOTAL_PREGUNTAS];
+
     for (int i = 0; i < TOTAL_PREGUNTAS; i++)
         indices[i] = i;
 
@@ -147,24 +182,26 @@ void examen()
     for (int i = 0; i < PREGUNTAS_MOSTRAR; i++)
     {
         int ind = indices[i];
+        preguntasSeleccionadas[i] = ind;
 
         char respuesta = presentarPregunta(preguntas[ind], i + 1);
 
         int resultado = evaluarRespuesta(respuesta, correctas[ind]);
+        respuestasCorrectas[i] = resultado;
         aciertos += resultado;
         aciertosPregunta += resultado;
 
         system("cls");
     }
 
-    calcularCalificacion(aciertos, PREGUNTAS_MOSTRAR);
+    calcularCalificacion(aciertos, PREGUNTAS_MOSTRAR, preguntas);
 }
 
 char presentarPregunta(struct Pregunta preguntas, int numero)
 {
     char r;
     int preguntasRespondidas = numero - 1;
-     float porcentaje = (aciertosPregunta * 100.0f) / PREGUNTAS_MOSTRAR;
+    float porcentaje = (aciertosPregunta * 100.0f) / PREGUNTAS_MOSTRAR;
 
     system("cls");
     printf("=== EXAMEN DE %s. === (Pregunta %d/%d) | %0.0f %% de aciertos actuales\n\n", nombreCompleto, numero, PREGUNTAS_MOSTRAR, porcentaje);
@@ -208,13 +245,25 @@ int evaluarRespuesta(char respuesta, int correcta)
         return 0;
 }
 
-void calcularCalificacion(int aciertos, int total)
+void calcularCalificacion(int aciertos, int total, struct Pregunta preguntas[])
 {
     float calificacion = (aciertos * 100.0f) / total;
 
     printf("===== RESULTADO FINAL =====\n");
-    printf("Número de respuestas correctas: %d de %d\n", aciertos, total);
     printf("Porcentaje de aciertos total: %0.0f%%\n\n", calificacion);
+    printf("Número de respuestas correctas: %d de %d\n", aciertos, total);
+    
+    printf("\n===== RETROALIMENTACIÓN =====\n\n");
+
+    for (int i = 0; i < PREGUNTAS_MOSTRAR; i++)
+    {
+        int idc = preguntasSeleccionadas[i];
+        int correcta = respuestasCorrectas[i];
+
+        printf("Pregunta %d: %s\n", i + 1, preguntas[idc].tex);
+        printf(" - %s\n", correcta ? "Correcta" : "Incorrecta");
+        printf(" Retroalimentación: \n %s\n\n", mostrarRetroalimentacion[idc]);
+    }
 }
 
 void registro()
