@@ -1,10 +1,11 @@
 /*Práctica 10 - Examen
 Sección D02
 Equipo: 3
+Lopez Medina Allan Octavio
 Montes Domínguez Alejandro
 Orozco García Jorge Clemente
-Trujillo Avila Alan David
-Lopez Medina Allan Octavio*/
+Trujillo Avila Alan David*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -20,6 +21,7 @@ struct Pregunta
     const char *opciones[3];
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void equipo();
 void registro();
 void examen();
 char presentarPregunta(struct Pregunta preguntas, int numero);
@@ -41,6 +43,7 @@ int main()
 
     do
     {
+        equipo();
         registro();
         examen();
 
@@ -259,7 +262,7 @@ void calcularCalificacion(int aciertos, int total, struct Pregunta preguntas[])
     printf("===== RESULTADO FINAL =====\n");
     printf("Porcentaje de aciertos total: %0.0f%%\n\n", calificacion);
     printf("Número de respuestas correctas: %d de %d\n", aciertos, total);
-    
+
     printf("\n===== RETROALIMENTACIÓN =====\n\n");
 
     for (int i = 0; i < PREGUNTAS_MOSTRAR; i++)
@@ -281,4 +284,17 @@ void registro()
     size_t len = strlen(nombreCompleto);
     if (len > 0 && nombreCompleto[len - 1] == '\n')
         nombreCompleto[len - 1] = '\0';
+}
+
+void equipo()
+{
+    printf("Fundamentos de programación\n");
+    printf("Sección D02\n");
+    printf("Práctica 10 - Exámen\n");
+    printf("Equipo 3\n");
+    printf("Exámen creado por:\n");
+    printf("Lopez Medina Allan Octavio\n");
+    printf("Montes Domínguez Alejandro\n");
+    printf("Orozco García Jorge Clemente\n");
+    printf("Trujillo Avila Alan David\n\n");
 }
