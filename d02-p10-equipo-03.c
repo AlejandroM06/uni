@@ -217,9 +217,9 @@ char presentarPregunta(struct Pregunta preguntas, int numero)
     printf("=== EXAMEN DE %s. === (Pregunta %d/%d) | %0.0f %% de aciertos actuales\n\n", nombreCompleto, numero, PREGUNTAS_MOSTRAR, porcentaje);
     printf("%s\n", preguntas.tex);
 
-    printf("  a) %s\n", preguntas.opciones[0]);
-    printf("  b) %s\n", preguntas.opciones[1]);
-    printf("  c) %s\n", preguntas.opciones[2]);
+    printf("  A) %s\n", preguntas.opciones[0]);
+    printf("  B) %s\n", preguntas.opciones[1]);
+    printf("  C) %s\n", preguntas.opciones[2]);
 
     do
     {
