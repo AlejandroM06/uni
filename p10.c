@@ -1,3 +1,10 @@
+/*Práctica 10 - Examen
+Sección D02
+Equipo: 3
+Montes Domínguez Alejandro
+Orozco García Jorge Clemente
+Trujillo Avila Alan David
+Lopez Medina Allan Octavio*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -62,7 +69,7 @@ int main()
     printf("Gracias por realizar el examen. ¡Hasta luego!\n");
     return 0;
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void examen()
 {
     srand(time(NULL));
@@ -196,7 +203,7 @@ void examen()
 
     calcularCalificacion(aciertos, PREGUNTAS_MOSTRAR, preguntas);
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 char presentarPregunta(struct Pregunta preguntas, int numero)
 {
     char r;
@@ -228,7 +235,7 @@ char presentarPregunta(struct Pregunta preguntas, int numero)
 
     return r;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int evaluarRespuesta(char respuesta, int correcta)
 {
     int valor;
@@ -244,7 +251,7 @@ int evaluarRespuesta(char respuesta, int correcta)
     else
         return 0;
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void calcularCalificacion(int aciertos, int total, struct Pregunta preguntas[])
 {
     float calificacion = (aciertos * 100.0f) / total;
@@ -265,7 +272,7 @@ void calcularCalificacion(int aciertos, int total, struct Pregunta preguntas[])
         printf(" Retroalimentación: \n %s\n\n", mostrarRetroalimentacion[idc]);
     }
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void registro()
 {
     printf("Ingresa tu nombre y apellido: ");
