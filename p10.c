@@ -164,10 +164,7 @@ char presentarPregunta(struct Pregunta preguntas, int numero)
 {
     char r;
     int preguntasRespondidas = numero - 1;
-    float porcentaje = 0.0f;
-
-    if (preguntasRespondidas > 0)
-        porcentaje = (aciertosPregunta * 100.0f) / preguntasRespondidas;
+     float porcentaje = (aciertosPregunta * 100.0f) / PREGUNTAS_MOSTRAR;
 
     system("cls");
     printf("=== EXAMEN DE %s. === (Pregunta %d/%d) | %0.0f %% de aciertos actuales\n\n", nombreCompleto, numero, PREGUNTAS_MOSTRAR, porcentaje);
