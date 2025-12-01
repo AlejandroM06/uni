@@ -3,7 +3,6 @@
 #include <conio.h>
 #include <locale.h>
 
-
 int menu(int seleccion)
 {
     system("cls");
@@ -69,7 +68,6 @@ int menu(int seleccion)
     return 0;
 }
 
-
 int main()
 {
 
@@ -86,14 +84,12 @@ int main()
     scanf("%i", &cap);
     int asiento[cap];
 
-
     for (cont = 1; cont <= cap; cont++)
     {
         asiento[cont] = 0;
     }
 
-
-      int tecla;
+    int tecla;
     int seleccion = 1;
     for (;;)
     {
@@ -219,10 +215,10 @@ int main()
             }
             case 5:
             {
-                float IngFin=0;
-                int ocupados=0;
-                int invitados=0;
-                int vacios=0;
+                float IngFin = 0;
+                int ocupados = 0;
+                int invitados = 0;
+                int vacios = 0;
                 int cont;
                 for (cont = 1; cont <= cap; cont++)
                 {
@@ -234,12 +230,10 @@ int main()
                     {
                         IngFin += prec;
                         ocupados++;
-
                     }
                     else if (asiento[cont] == 2)
                     {
                         invitados++;
-
                     }
                 }
 
@@ -256,10 +250,9 @@ int main()
             }
             }
 
-
             _getch();
         }
     }
 
     return 0;
-} 
+}
