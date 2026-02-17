@@ -5,8 +5,8 @@ int main(){
     float kiloManz, kiloUva, kiloPera;
     iva = 16 * 0.01;
 
-    printf("FRUTERIA - EL INGE\n");
-    printf("==================\n");
+    printf("\n\nFRUTERIA - EL INGE\n");
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
     printf("Ingrese el precio de 1 kg de manzanas: ");
     scanf("%f", &manzanas);
     printf("Ingrese el precio de 1 kg de uvas: ");
@@ -15,9 +15,9 @@ int main(){
     scanf("%f", &peras);
     printf("\nIngrese el numero de kg de manzanas que desea llevar: ");
     scanf("%f", &kiloManz);
-    printf("Ingrese el numero de kg de manzanas que desea llevar: ");
+    printf("Ingrese el numero de kg de uvas que desea llevar: ");
     scanf("%f", &kiloUva);
-    printf("Ingrese el numero de kg de manzanas que desea llevar: ");
+    printf("Ingrese el numero de kg de peras que desea llevar: ");
     scanf("%f", &kiloPera);
     printf("\n%.2f kg de manzanas = %.1f\n", kiloManz, manzanas * kiloManz);
     printf("%.2f kg de uvas = %.1f\n", kiloUva, uvas * kiloUva);
@@ -26,9 +26,10 @@ int main(){
     subtotal = (uvas * kiloUva) + (peras * kiloPera) + (manzanas * kiloManz);
     total = (iva * subtotal) + subtotal;
 
-    printf("Subtotal = %.2f\n", subtotal);
-    printf("IVA = %.2f\n", iva * subtotal);
-    printf("Total = %.2f\n", total);
+    printf("Subtotal = %.2f pesos\n", subtotal);
+    printf("IVA = %.2f pesos\n", iva * subtotal);
+    printf("Total = %.2f pesos\n\n", total);
+    printf("+++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
     
     return 0;
 }

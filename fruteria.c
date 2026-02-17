@@ -10,14 +10,15 @@ int main(){
     total = (iva * subtotal) + subtotal;
 
     printf("FRUTERIA - EL INGE\n");
-    printf("==================\n");
+    printf("+++++++++++++++++++++++++\n\n");
     printf("1 kg de manzanas = %.1f\n", manzanas);
     printf("1 kg de uvas = %.1f\n", uvas);
     printf("1 kg de peras = %.1f\n\n", peras);
 
-    printf("Subtotal = %.2f\n", subtotal);
-    printf("IVA = %.2f\n", iva * subtotal);
-    printf("Total = %.2f\n", total);
+    printf("Subtotal = %.2f pesos\n", subtotal);
+    printf("IVA = %.2f pesos\n", iva * subtotal);
+    printf("Total = %.2f pesos\n\n", total);
+    printf("+++++++++++++++++++++++++");
     
     return 0;
 }

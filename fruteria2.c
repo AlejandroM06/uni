@@ -1,11 +1,12 @@
 #include <stdio.h>
 
-int main(){
+int main()
+{
     float manzanas, uvas, peras, iva, subtotal, total;
     iva = 16 * 0.01;
 
     printf("FRUTERIA - EL INGE\n");
-    printf("==================\n");
+    printf("+++++++++++++++++++++++++++++++++++++++++++++\n\n");
     printf("Ingrese el precio de 1 kg de manzanas: ");
     scanf("%f", &manzanas);
     printf("Ingrese el precio de 1 kg de uvas: ");
@@ -19,9 +20,10 @@ int main(){
     subtotal = uvas + peras + manzanas;
     total = (iva * subtotal) + subtotal;
 
-    printf("Subtotal = %.2f\n", subtotal);
-    printf("IVA = %.2f\n", iva * subtotal);
-    printf("Total = %.2f\n", total);
-    
+    printf("Subtotal = %.2f pesos\n", subtotal);
+    printf("IVA = %.2f pesos\n", iva * subtotal);
+    printf("Total = %.2f pesos\n\n", total);
+    printf("+++++++++++++++++++++++++++++++++++++++++++++");
+
     return 0;
 }
