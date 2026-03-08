@@ -1,18 +1,17 @@
 #include <stdio.h>
-#include <math.h>
 
 int main()
 {
-    double lados;
+    float lados;
     
     printf("Ingrese el valor de los lados del hexagono: ");
-    scanf("%lf", &lados);
+    scanf("%f", &lados);
 
-    double apotema = lados / (2 * (tan(0.523599)));
-    double perimetro = lados * 6;
-    double area = (perimetro * apotema) / 2;
+    float apotema = lados / (2 * 0.57735);
+    float perimetro = lados * 6;
+    float area = (perimetro * apotema) / 2;
 
-    printf("El area del tu hexagono es: %.2lf\n", area);
+    printf("El area del tu hexagono es: %.2f\n", area);
 
     return 0;
 }
